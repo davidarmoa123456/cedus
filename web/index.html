@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+ <head>
+ <title>CEDUS</title>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <link href="css/bootstrap-theme.min.css" rel="stylesheet" type="text/css">
+ <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
+ <link href="css/estilos.css" rel="stylesheet" type="text/css">
+ </head>
+ <body>
+ <div id="panelAcceso" class="panel panel-primary">
+ <div class="panel-heading centrado"> Acceso al Sistema</div>
+ <div class="panel-body">
+ <div class="row">
+ <div class="col-md-12 centrado">
+ <img src="imagenes/logo.png" class="avatar" alt=""/>
+   <button type="button" class="btn btn-info btn-sm boton" data-toggle="modal" data-target="#myModal">ACERCA DE</button>
+ </div>
+ </div>
+ <form id="formAcceso">
+ <div class="row">
+ <div class="col-md-4">
+ <label>Usuario</label>
+ </div>
+ <div class="col-md-8">
+ <input id="login_usuario" name="login_usuario" type="text" class="form-control tema" >
+ </div>
+ </div>
+ <div class="row">
+ <div class="col-md-4">
+ <label>Contraseña</label>
+ </div>
+ <div class="col-md-8">
+ <input id="password_usuario" name="password_usuario" type="password" class="form-control tema">
+ </div>
+ </div>
+ </form>
+ </div>
+ <div class="panel-footer centrado">
+ <button id="botonIngresar" type="button" class="btn btn-primary btn-sm "><b class="glyphicon glyphicon-check"></b></button>
+ </div>
+ </div>
+
+     
+
+  <!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header cabeceramodal centrado">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">"SISTMA CEDUS"</h4>
+          <h4>Sistema de Inscripción Académico</h4>
+          <p>Consiste en registrar las inscripciones del alumno
+          (matricula y cuotera), poder realizar los pagos 
+          de matricula e cuotas y emitir recibos por las mismas</p>   
+        </div>
+        <div class="modal-body">
+          <p>Desarrollado por: David Jerónimo Armoa Armoa</p>
+          <p>Correo: davidarmoa1912@gmail.com</p>
+          <p>Celular: 0972403768</p>
+          <di class="text-center">
+          <a href="media/Cedus.mp4"> Video Demostracion</a>
+              
+          </di>
+        </div>
+        <div class="modal-footer">
+            <p class="text-left"> copyright &copy; 2019 David Jerónimo Armoa.Todos los Derechos Reservados</p>
+          
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  
+</div>
+     
+ <div id="mensajes" class="well well-sm centrado">Mensajes del Sistema</div>
+ <script src="js/jquery.min.js" type="text/javascript"></script>
+ <script src="js/bootstrap.min.js" type="text/javascript"></script>
+ <script src="js/funciones.js" type="text/javascript"></script>
+ <script>
+ cerrarSesion();
+ $("usuario_usuario").focus();
+ siguienteCampo("usuario_usuario", "#password_usuario", false);
+ siguienteCampo("password_usuario", "#botonIngresar", false);
+ $("#botonIngresar").on("click", function () {
+ $(".glyphicon").removeClass(" glyphicon glyphicon-check");
+ $(this).addClass("glyphicon glyphicon-ok").css("background-color", "green");
+ validarAcceso();
+ });
+ </script>
+ </body>
+</html>

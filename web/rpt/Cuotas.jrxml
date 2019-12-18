@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Cuota" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="ecea2e35-727e-4638-b189-7d7e9a6e9b5c">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="ID" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select Concat(p.nombre_persona,' ',p.apellido_persona) as alumno,
+p.ci_persona as cedula,
+ca.id_cuentaalumno as codigo,
+ca.monto as cuota,
+ca.fecha_vencimiento as fecha,
+ca.numero_cuota as N°,
+cu.nombre_curso as curso,
+tu.nombre_turno as turno
+ from cuentas_alumnos ca
+                    left join inscripciones i on i.id_inscripcion=ca.id_inscripcion
+                    left join convocatorias ac on ac.id_convocatoria=i.id_convocatoria
+                    left join años a on a.id_año=ac.id_año
+                     left join cursos cu on cu.id_curso=ac.id_curso
+                    left join turnos tu on tu.id_turno=ac.id_turno
+                    left join personas p on p.id_persona=i.id_persona
+		WHERE ca.id_cuentaalumno=$P{ID}]]>
+	</queryString>
+	<field name="alumno" class="java.lang.String"/>
+	<field name="cedula" class="java.lang.Integer"/>
+	<field name="codigo" class="java.lang.Integer"/>
+	<field name="cuota" class="java.lang.Integer"/>
+	<field name="fecha" class="java.sql.Date"/>
+	<field name="n°" class="java.lang.Integer"/>
+	<field name="curso" class="java.lang.String"/>
+	<field name="turno" class="java.lang.String"/>
+	<background>
+		<band height="50"/>
+	</background>
+	<title>
+		<band height="134" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="0" width="555" height="134" uuid="03e16b5a-b9ce-4a25-a71b-b78615c32824"/>
+			</rectangle>
+			<image>
+				<reportElement x="12" y="4" width="104" height="126" uuid="dca36fbd-355c-4741-b464-4832a7e4d921"/>
+				<imageExpression><![CDATA[".\\logo.jpg"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement mode="Opaque" x="160" y="35" width="238" height="58" forecolor="#0000FF" uuid="217560a6-c9ff-458e-8190-ffbc0d390480"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="22"/>
+				</textElement>
+				<text><![CDATA[RECIBO DE CUOTA]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="23" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="0" width="555" height="23" uuid="47797e98-6407-4a6a-9ae9-deabe0297149"/>
+			</rectangle>
+			<staticText>
+				<reportElement mode="Opaque" x="2" y="0" width="77" height="23" forecolor="#FFFFFF" backcolor="#666666" uuid="c7939696-a672-4c7c-9676-4e95208fa6b7"/>
+				<textElement>
+					<font fontName="Times New Roman" size="14"/>
+				</textElement>
+				<text><![CDATA[ALUMNO]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="80" y="3" width="117" height="20" uuid="7a19a49e-81d8-4d61-be34-5c7987927a8a"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{alumno}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Opaque" x="230" y="0" width="70" height="23" forecolor="#FFFFFF" backcolor="#666666" uuid="25e46f32-349e-4fb3-867b-5c78f0253f60"/>
+				<textElement>
+					<font fontName="Times New Roman" size="14"/>
+				</textElement>
+				<text><![CDATA[CEDULA]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="300" y="3" width="100" height="20" uuid="b6f0ab0d-4ada-4288-aaf4-2b42440fa21e"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cedula}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="26" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="0" width="555" height="26" uuid="c48b7a51-2ab6-4cd3-b086-a31c826e72ff"/>
+			</rectangle>
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="0" width="104" height="26" forecolor="#FFFFFF" backcolor="#666666" uuid="4275317d-18c5-40ce-9dbc-273570cbb7e0"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="14"/>
+				</textElement>
+				<text><![CDATA[CODIGO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="104" y="0" width="117" height="26" forecolor="#FFFFFF" backcolor="#666666" uuid="75863b59-b7df-4f03-805b-5129b01e1b78"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="14"/>
+				</textElement>
+				<text><![CDATA[N° CUOTA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="321" y="0" width="117" height="26" forecolor="#FFFFFF" backcolor="#666666" uuid="f37dab47-8bfe-49bb-8d47-894eb0eeca3f"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="14"/>
+				</textElement>
+				<text><![CDATA[CURSO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="438" y="0" width="117" height="26" forecolor="#FFFFFF" backcolor="#666666" uuid="12ade640-8382-43c2-990d-0c4620c6ff8e"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="14"/>
+				</textElement>
+				<text><![CDATA[TURNO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="217" y="0" width="104" height="26" forecolor="#FFFFFF" backcolor="#666666" uuid="e2a1c4ef-e613-43e6-929d-ac1176427127"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="14"/>
+				</textElement>
+				<text><![CDATA[MONTO]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="28" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="0" width="555" height="28" uuid="53ee10f6-5466-417c-8261-19247655fbeb"/>
+			</rectangle>
+			<textField>
+				<reportElement x="0" y="0" width="104" height="28" uuid="1dbdc9a6-fa25-445d-932b-408120e01dc5"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{codigo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="104" y="0" width="113" height="28" uuid="e7d573f6-25d4-47a4-b40d-89de847b47b1"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{n°}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="319" y="0" width="117" height="28" uuid="14fa6ddc-63e8-420a-a518-8951b53e3833"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{curso}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="436" y="0" width="119" height="28" uuid="64d3c249-6a17-481e-8c90-1ffb275c0e49"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{turno}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="217" y="0" width="104" height="28" uuid="976324db-fbc0-4ac2-b417-badcc4c0e65b"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cuota}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+</jasperReport>

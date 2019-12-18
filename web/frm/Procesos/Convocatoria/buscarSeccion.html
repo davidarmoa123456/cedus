@@ -1,0 +1,72 @@
+<div id="panelBuscar" class="panel panel-primary">
+    <div class="panel-heading text-center">Buscar Seccion<button id="botonSalirBuscar" type="button" class="btn btn-primary btn-sm close"><span class="glyphicon glyphicon glyphicon glyphicon-remove-sign" title="Salir"  ></span></button></div>
+    <div class="panel-body">
+        <form id="formBuscar">
+            <input type="hidden" id="bpagina" name="bpagina" value="1" />
+            <div class="row">
+                <div class="col-md-3">
+                    <span>Genero</span>
+                </div>
+                <div class="col-md-5 ">
+                    <input id="bnombre_seccion" name="bnombre_seccion" type="text" class="form-control input-sm" placeholder="Nombre">
+                </div>
+                <div class="col-md-2">
+                    <button id="botonBuscar" type="button" class="btn btn-primary btn-sm">Buscar</button>
+                </div>
+            </div>
+        </form>
+        <br>
+        <div id="resultado">
+            <table class="table table-bordered table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Nombre</th>
+                    </tr>
+                </thead>
+                <tbody id="contenidoBusqueda">
+                </tbody>
+            </table>
+            <nav>
+                <ul class="pager">
+                    <li id="anterior"><a href="#"><span aria-hidden="true">&larr;</span> Anterior</a></li>
+                    <li id="siguiente"><a href="#">Siguiente<span aria-hidden="true">&rarr;</span></a></li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+    <div class="panel-footer text-center">
+
+    </div>
+</div>
+<script>
+   buscarNombreSecciones();
+    $("#bnombre_seccion").focus();
+    //siguienteCampo("#bnombre_seccion", "#botonBuscar", false);
+    $("#botonBuscar").on("click", function() {
+        $("#contenidoBusqueda").html("");
+        $("#bpagina").val("1"); 
+           buscarNombreSecciones();
+        $("#bnombre_seccion").focus();
+    });
+    $("#anterior").on("click", function() {
+        $("#contenidoBusqueda").html("");
+        var pag = parseInt($("#bpagina").val());
+        if (pag > 1) {
+            $("#bpagina").val(pag - 1);
+        }
+        buscarNombreSecciones();
+    });
+    $("#siguiente").on("click", function() {
+        $("#contenidoBusqueda").html("");
+        var pag = parseInt($("#bpagina").val());
+        $("#bpagina").val(pag + 1);
+        buscarNombreSecciones();
+    });
+
+    $("#botonSalirBuscar").on('click', function () {
+        $("#buscar").fadeOut("slow");
+        $("#panelPrograma").fadeIn("slow");
+    }); 
+</script>
+

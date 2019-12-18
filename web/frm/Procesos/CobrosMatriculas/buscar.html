@@ -1,0 +1,70 @@
+<div id="panelBuscar" class="panel panel-primary">
+    <div class="panel-heading text-center">Buscar Cobros Matriculas<button id="botonSalirBuscar" type="button" class="btn btn-primary btn-sm close"><span class="glyphicon glyphicon glyphicon glyphicon-remove-sign" title="Salir"  ></span></button></div>
+    <div class="panel-body">
+        <form id="formBuscar">
+            <input type="hidden" id="bpagina" name="bpagina" value="1" />
+            <div class="row">
+                <div class="col-md-4">
+                    <span>Cobro Matricula</span>
+                </div>
+                <div class="col-md-8">
+                    <input id="bnombre_comatricula" name="bnombre_comatricula" type="text" class="form-control input-sm tema" placeholder="Nombre" onkeyup="buscarNombreCoMatriculas(this)"  onkeydown="return salir(event)">
+                </div>
+               
+            </div>
+        </form>
+        <br>
+        <div id="resultado">
+            <table class="table table-bordered table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Nombre</th>
+                    </tr>
+                </thead>
+                <tbody id="contenidoBusqueda">
+                </tbody>
+            </table>
+            <nav>
+                <ul class="pager">
+                    <li id="anterior"><a href="#"><span aria-hidden="true">&larr;</span> Anterior</a></li>
+                    <li id="siguiente"><a href="#">Siguiente<span aria-hidden="true">&rarr;</span></a></li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+    <div class="panel-footer text-center">
+
+    </div>
+</div>
+<script>
+   buscarNombreCoMatriculas();
+    $("#bnombre_comatricula").focus();
+    //siguienteCampo("#bnombre_comatricula", "#botonBuscar", false);
+    $("#botonBuscar").on("click", function() {
+        $("#contenidoBusqueda").html("");
+        $("#bpagina").val("1"); 
+           buscarNombreCoMatriculas();
+        $("#bnombre_comatricula").focus();
+    });
+    $("#anterior").on("click", function() {
+        $("#contenidoBusqueda").html("");
+        var pag = parseInt($("#bpagina").val());
+        if (pag > 1) {
+            $("#bpagina").val(pag - 1);
+        }
+        buscarNombreCoMatriculas();
+    });
+    $("#siguiente").on("click", function() {
+        $("#contenidoBusqueda").html("");
+        var pag = parseInt($("#bpagina").val());
+        $("#bpagina").val(pag + 1);
+        buscarNombreCoMatriculas();
+    });
+
+    $("#botonSalirBuscar").on('click', function () {
+        $("#buscar").fadeOut("slow");
+        $("#panelPrograma").fadeIn("slow");
+    }); 
+</script>
+

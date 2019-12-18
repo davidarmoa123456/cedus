@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Matriculas" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="0bc83e1c-a7a8-457d-91a7-43e570bc8b9b">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Title" forecolor="#FFFFFF" fontName="Times New Roman" isBold="false" pdfFontName="Times-Bold"/>
+	<style name="SubTitle" forecolor="#CCCCCC" fontName="Times New Roman" isBold="false" pdfFontName="Times-Roman"/>
+	<style name="Column header" forecolor="#666666" fontName="Times New Roman" isBold="true" pdfFontName="Times-Roman"/>
+	<style name="Detail" mode="Transparent" fontName="Times New Roman" pdfFontName="Times-Roman"/>
+	<style name="Row" mode="Transparent" fontName="Times New Roman" pdfFontName="Times-Roman">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{REPORT_COUNT}%2 == 0]]></conditionExpression>
+			<style mode="Opaque" backcolor="#F0EFEF"/>
+		</conditionalStyle>
+	</style>
+	<parameter name="ID" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select Concat(p.nombre_persona,' ',p.apellido_persona) as alumno,
+p.ci_persona as cedula,
+cm.id_inscripcion as codigo,
+cm.monto_matricula as matricula,
+cm.fecha_cobro as fecha,
+cu.nombre_curso as curso,
+tu.nombre_turno as turno
+
+
+from cobros_matriculas cm inner join inscripciones i on i.id_inscripcion=cm.id_inscripcion
+inner join personas p on p.id_persona=i.id_persona
+inner join convocatorias c on c.id_convocatoria=i.id_convocatoria
+inner join cursos cu on cu.id_curso=c.id_curso
+inner join turnos tu on tu.id_turno=c.id_turno WHERE i.id_inscripcion=$P{ID}]]>
+	</queryString>
+	<field name="alumno" class="java.lang.String"/>
+	<field name="cedula" class="java.lang.Integer"/>
+	<field name="codigo" class="java.lang.Integer"/>
+	<field name="matricula" class="java.lang.Integer"/>
+	<field name="fecha" class="java.sql.Date"/>
+	<field name="curso" class="java.lang.String"/>
+	<field name="turno" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="132" splitType="Stretch">
+			<frame>
+				<reportElement mode="Opaque" x="2" y="3" width="551" height="129" backcolor="#FFFFFF" uuid="32817177-04e9-4e6e-bc85-fc35552c9472"/>
+			</frame>
+			<rectangle>
+				<reportElement x="0" y="-2" width="555" height="134" uuid="e0600fc2-1d88-4ff2-a88a-218e3d03c849"/>
+			</rectangle>
+			<image>
+				<reportElement x="14" y="3" width="104" height="126" uuid="b8dfe86b-e709-4897-91d7-0045da551e02"/>
+				<imageExpression><![CDATA[".\\logo.jpg"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement style="SubTitle" x="158" y="40" width="249" height="29" forecolor="#0000CC" uuid="8eb9400e-43d8-423c-aef6-4c85afcc822d"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="20" isBold="false"/>
+				</textElement>
+				<text><![CDATA[RECIBO MATRICULA]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="23">
+			<rectangle>
+				<reportElement x="0" y="0" width="555" height="23" uuid="8edb4eea-640f-47eb-8b46-32b238097123"/>
+			</rectangle>
+			<textField>
+				<reportElement x="72" y="1" width="100" height="20" uuid="7248b21e-3632-41ef-b17f-ba31b66da3b5"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{alumno}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Opaque" x="208" y="0" width="65" height="23" forecolor="#FFFFFF" backcolor="#666666" uuid="239152bf-9390-4496-a1f5-bff593084191"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<text><![CDATA[CEDULA]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="274" y="0" width="100" height="23" uuid="5820b708-eaaf-4546-a6bf-4062a62d6e19"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cedula}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Opaque" x="2" y="0" width="70" height="23" forecolor="#FFFFFF" backcolor="#666666" uuid="254a43f2-88ec-47bb-8d68-c5ae122224c0"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<text><![CDATA[ALUMNO]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="26" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="0" width="555" height="26" uuid="64f684f7-40ba-40f1-b320-85fb2af9cc68"/>
+			</rectangle>
+			<staticText>
+				<reportElement mode="Opaque" x="2" y="0" width="114" height="26" forecolor="#FFFFFF" backcolor="#666666" uuid="28c7f8bd-dcad-41af-bdce-3b0820ec4bb9"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<text><![CDATA[CODIGO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="115" y="0" width="146" height="26" forecolor="#FFFFFF" backcolor="#666666" uuid="26464f41-5d78-4ef5-aef7-6f50f65bd398"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<text><![CDATA[MONTO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="261" y="0" width="146" height="26" forecolor="#FFFFFF" backcolor="#666666" uuid="e9bac941-571c-4442-939f-a9b534cfc1d9"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<text><![CDATA[CURSO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="407" y="0" width="148" height="26" forecolor="#FFFFFF" backcolor="#666666" uuid="acce42d6-658c-4a89-8a87-4ead0d460fa2"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<text><![CDATA[TURNO]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="28" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="0" width="555" height="28" uuid="732a1650-a4ab-4911-85fa-26c8ec117d22"/>
+			</rectangle>
+			<textField>
+				<reportElement x="2" y="0" width="113" height="28" uuid="216056d9-a5fb-4054-ade2-2e4dc0118099"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{codigo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="115" y="0" width="146" height="28" uuid="904a0f01-ffb1-4cb5-9237-7d79e6be8fe8"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{matricula}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="261" y="0" width="146" height="28" uuid="7932e303-e50e-40ab-9d00-76e637e038ec"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{curso}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="409" y="0" width="146" height="28" uuid="75f48376-a5e4-44e0-a744-44ec0fef957e"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{turno}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

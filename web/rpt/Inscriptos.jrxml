@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Inscriptos" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="9fa594c7-d00f-4a01-8c2d-a23f53318651">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="TURNO" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="CURSO" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select concat(nombre_persona,' ',apellido_persona) as alumno,
+ci_persona,
+telefono_persona,
+nombre_curso,
+nombre_turno,
+direccion_persona
+  from personas p inner join inscripciones i on p.id_persona=i.id_persona
+ inner join convocatorias c on c.id_convocatoria=i.id_convocatoria
+ inner join turnos t on t.id_turno=c.id_turno
+ inner join cursos cu on cu.id_curso=c.id_curso
+ where nombre_turno=$P{TURNO} AND nombre_curso=$P{CURSO}]]>
+	</queryString>
+	<field name="alumno" class="java.lang.String"/>
+	<field name="ci_persona" class="java.lang.Integer"/>
+	<field name="telefono_persona" class="java.lang.String"/>
+	<field name="nombre_curso" class="java.lang.String"/>
+	<field name="nombre_turno" class="java.lang.String"/>
+	<field name="direccion_persona" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="48" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="0" width="555" height="48" uuid="428ead0a-89a3-4e25-9274-a65807ea087b"/>
+				<graphicElement>
+					<pen lineWidth="2.0"/>
+				</graphicElement>
+			</rectangle>
+			<staticText>
+				<reportElement mode="Transparent" x="0" y="0" width="555" height="48" forecolor="#333333" backcolor="#999999" uuid="eb14a350-365a-4aa6-983d-05cdc19f4e4e"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" size="18"/>
+				</textElement>
+				<text><![CDATA[LISTA DE ALUMNOS]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="0" width="555" height="20" uuid="88d54afe-f2d0-4f8d-b6c8-687fa56fc403"/>
+				<graphicElement>
+					<pen lineWidth="2.0"/>
+				</graphicElement>
+			</rectangle>
+			<staticText>
+				<reportElement mode="Transparent" x="275" y="0" width="136" height="20" forecolor="#000000" backcolor="#999999" uuid="55c7cf81-96df-4f50-bfb2-ae6f5969b720"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" size="12"/>
+				</textElement>
+				<text><![CDATA[TURNO]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="411" y="0" width="144" height="20" uuid="f8357afe-fd2d-482d-aa44-dd9cfbdbdcab"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nombre_turno}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="137" y="0" width="137" height="20" uuid="c1774767-7d00-4a26-8ba7-02c89723f9be"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nombre_curso}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Transparent" x="1" y="0" width="136" height="20" forecolor="#000000" backcolor="#999999" uuid="642c3cbe-483e-476a-bddf-31bc39572eb2"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" size="12"/>
+				</textElement>
+				<text><![CDATA[CURSO]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="20" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="0" width="137" height="20" uuid="58d1d19a-b80d-446f-b355-d4707f457c73"/>
+				<graphicElement>
+					<pen lineWidth="2.0"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement x="137" y="0" width="137" height="20" uuid="6b5f29b9-a21f-4c25-9ac4-2aea7c2f4929"/>
+				<graphicElement>
+					<pen lineWidth="2.0"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement x="274" y="0" width="137" height="20" uuid="915716f7-3517-46a9-9eeb-80dadccf475a"/>
+				<graphicElement>
+					<pen lineWidth="2.0"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement x="411" y="0" width="144" height="20" uuid="420ca6d3-8bf6-416b-98a6-4b0015d95a9c"/>
+				<graphicElement>
+					<pen lineWidth="2.0"/>
+				</graphicElement>
+			</rectangle>
+			<staticText>
+				<reportElement mode="Transparent" x="0" y="0" width="138" height="20" forecolor="#000000" backcolor="#999999" uuid="ca6bc51c-a178-4f9a-9c70-8e0436b056a4"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[ALUMNO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="137" y="0" width="138" height="20" forecolor="#000000" backcolor="#999999" uuid="5626c22d-dddc-43e4-963b-910aeb5c44ff"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[CEDULA N°]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="274" y="0" width="138" height="20" forecolor="#000000" backcolor="#999999" uuid="c8b91bab-ead5-48f4-a8f9-eaf47480ce12"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[TELEFONO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="411" y="0" width="144" height="20" forecolor="#000000" backcolor="#999999" uuid="74dfe239-c95a-4faa-843e-7174110912aa"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[DIRECCION]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<rectangle>
+				<reportElement x="411" y="0" width="144" height="20" uuid="09e6465e-8a51-4eef-8283-a5920bf50468"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="275" y="0" width="136" height="20" uuid="72cf291f-82a0-471e-885a-c96025526bff"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="137" y="0" width="137" height="20" uuid="76fcc404-76cf-45db-a806-c55f44177b08"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="0" y="0" width="137" height="20" uuid="ce0c176e-85c3-49c5-8e49-3ba93ac57cf1"/>
+			</rectangle>
+			<textField>
+				<reportElement x="0" y="0" width="137" height="20" uuid="793e9e68-e46d-4ea4-8aaf-a447c076f3c8"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{alumno}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="138" y="0" width="137" height="20" uuid="cede2148-7452-4e95-93fe-39e4b055690c"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{ci_persona}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="275" y="0" width="136" height="20" uuid="3df4218e-89a2-4ec9-a120-c166fd941b0c"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{telefono_persona}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="412" y="0" width="143" height="20" uuid="67993985-c5c2-45d5-aac8-9d1b37be8b3b"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{direccion_persona}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+</jasperReport>

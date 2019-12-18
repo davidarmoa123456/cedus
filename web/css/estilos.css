@@ -1,0 +1,59 @@
+*{ margin:0;  padding:0}
+#panelAcceso{ width:350px;  margin:auto;  margin-top:5%}
+.new-select{ float:left}
+.linea{ border:solid 1px #fff;  margin:5px; }
+.ancho{ width:30px}
+.margenes{ margin-bottom:5px}
+.login-box{ width:320px;  height:420px;  background:rgba(0,0,0,0.5);  color:#fff;  top:50%;  left:50%;  position:absolute;  transform:translate(-50%,-50%);  box-sizing:border-box;  padding:70px 30px}
+.avatar{ width:320px;  height:250px;  padding:1px;  position:relative}
+#mensajes{ position:fixed;  bottom:0;  margin-bottom:0;  width:100%;  height:40px}
+.izquierda{ text-align:left}
+.centrado{ text-align:center}
+.derecha{ text-align:right}
+.row{ margin-bottom:3px}
+tbody tr{ cursor:pointer}
+form{ width:80%;  margin:0 auto;  text-align:center}
+#panelPrograma{ background:rgba(0,0,0,0.5);  color:#fff}
+#panelBuscar{ background:rgba(0,0,0,0.5);  color:#fff}
+#panelAcceso{ background:rgba(0,0,0,0.5);  color:#fff}
+span{ margin:0;  padding:0;  font-weight:bold}
+input{ width:100%;  margin-bottom:15px}
+.tema{ border:none;  border-bottom:1px solid #fff;  background:transparent;  outline:none;  height:40px;  color:white;  font-size:16px}
+.tema2{ border:none;  border-bottom:1px solid #fff;  background:transparent;  outline:none;  height:40px;  color:black;  font-size:16px}
+option{color:black}
+#mensajes{ width:450px;  left:66%}
+.boton{  left:10%}
+.negro{ color:#000}
+#botonNuevo{ border:2px solid blue;  color:black;  padding:15px 32px;  text-align:center;  text-decoration:none;  display:inline-block;  font-size:12px}
+#botonModificar{ border:2px solid blue;  color:black;  padding:15px 32px;  text-align:center;  text-decoration:none;  display:inline-block;  font-size:12px}
+#botonImprimir{ border:2px solid blue;  color:black;  padding:15px 32px;  text-align:center;  text-decoration:none;  display:inline-block;  font-size:12px}
+#botonAgregarAsignaturas{ border:2px solid blue;  color:black;  padding:10px 32px;  text-align:center;  text-decoration:none;  display:inline-block;  font-size:12px}
+#botonCobrarCuota{ border:2px solid blue;  color:black;  padding:15px 32px;  text-align:center;  text-decoration:none;  display:inline-block;  font-size:12px}
+#botonAgregar{ border:2px solid blue;  color:black;  padding:15px 32px;  text-align:center;  text-decoration:none;  display:inline-block;  font-size:12px}
+#botonEliminar{ color:black;  border:2px solid blue;  padding:15px 32px;  text-align:center;  text-decoration:none;  display:inline-block;  font-size:12px}
+#botonGuardar{ color:black;  border:2px solid blue;  padding:15px 32px;  text-align:center;  text-decoration:none;  display:inline-block;  font-size:12px}
+td{ background:white;  color:#000}
+#botonSalir{ border:2px solid blue;  color:black;  padding:15px 32px;  text-align:center;  text-decoration:none;  display:inline-block;  font-size:12px}
+#botonCobroMatricula{ border:2px solid blue;  color:black;  padding:15px 32px;  text-align:center;  text-decoration:none;  display:inline-block;  font-size:12px}
+.abs-center{ display:flex;  align-items:center;  justify-content:center;  min-height:100vh}
+.letra{ background-color:white}
+.close{ margin:0;  text-align:right}
+.close1{ margin:0;  right:-35px;  text-align:right}
+.Guardar{ margin:0;  left:25%;  text-align:right}
+.Eliminar{ margin:0;  left:30%;  text-align:right}
+.ingresar{ width:100px;  font-size:20px}
+label{ text-align:center}
+body{ background-color:#269abc;  background-position:center;  background-repeat:no-repeat;  background-size:cover;  position: relative}
+.espacio{ display:inline;  margin:0px;  padding:0px}
+#panelLinea{ background:rgba(0,0,0,0.5);  color:#fff}
+.cabeceramodal{background: #269abc; color:#fff}
+#presentacion{ position:fixed;  top:0;}
+#presentacion{ width:480px; left:66% }
+#botonBuscarIdAsignacioncurso{ border:2px solid blue;  color:black;  padding:11px  18px;  text-align:center;  text-decoration:none;  display:inline-block;  font-size:10px}
+#buscarasignacion{padding-bottom:10px }
+
+@media (max-width:320px){}
+@media (min-width:768px){}
+@media (orientation:landscape){}
+@media only screen and (min-width:320px) and (max-width:480px){}
+@media only screen and (min-device-width:960px){}
